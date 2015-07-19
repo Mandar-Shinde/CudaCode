@@ -41,3 +41,8 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.lastbuildstate
+1_HelloWorld/Debug/1_HelloWorld.tlog/link.command.1.tlog
+*.tlog
+CUDA.sdf
+*.deps
