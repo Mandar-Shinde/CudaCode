@@ -2,7 +2,6 @@
 // Sample code in CUDA From internet
 
 #include "cuda_runtime.h"
-#include "device_launch_parameters.h"
 
 #include <stdio.h>
 #include <conio.h>
