@@ -1,4 +1,3 @@
-# CudaCode
-CUDA Code
+# Cuda Sample
 
-Practice and Learn
+Practice and Learning code 
