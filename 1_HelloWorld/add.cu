@@ -2,9 +2,10 @@
 // Sample code in CUDA From internet
 
 #include "cuda_runtime.h"
-
+#include <cuda.h> 
 #include <stdio.h>
 #include <conio.h>
+#include <main.cu>
 
 cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size);
 
@@ -14,7 +15,7 @@ __global__ void addKernel(int *c, const int *a, const int *b)
     c[i] = a[i] + b[i];
 }
 
-int main()
+int SmallAdd()
 {
 	printf( "Adding Using Cuda \n ");
     const int arraySize = 5;
