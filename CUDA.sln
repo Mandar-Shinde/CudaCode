@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_1_Add", "1_HelloWorld\1_HelloWorld.vcxproj", "{1F9BD428-B0C5-4468-830C-A9FB056D60D6}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_1_ListComputeDevice", "1_1_ListComputeDevice\1_1_ListComputeDevice.vcxproj", "{1F9BD428-B0C5-4468-830C-A9FB056D60D6}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_2_smallAdd", "1_2_smallAdd\1_2_smallAdd.vcxproj", "{1C2D7A81-D2BE-4FB2-9E11-AC4A3ABC3D09}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_2_AddingNumber", "1_2_AddingNumber\1_2_AddingNumber.vcxproj", "{1C2D7A81-D2BE-4FB2-9E11-AC4A3ABC3D09}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_3_ComputeCheck", "1_3_ComputeCheck\1_3_ComputeCheck.vcxproj", "{4123C8F2-B266-4C75-B437-26F972811574}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_3_AddingNumbersArray", "1_3_AddingNumbersArray\1_3_AddingNumbersArray.vcxproj", "{4123C8F2-B266-4C75-B437-26F972811574}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
