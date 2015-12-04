@@ -78,7 +78,7 @@ cudaError_t addWithCuda(int *c, const int *a, const int *b, unsigned int size)
 	CUDA_SAFE_CALL(cudaMemcpy(dev_b, b, size * sizeof(int), cudaMemcpyHostToDevice));
 	
 	// Launch a kernel on the GPU with one thread for each element.
-	addKernel << <1, size >> >(dev_c, dev_a, dev_b);
+	addKernel <<<1, size >>>(dev_c, dev_a, dev_b);
 
 	// Check for any errors launching the kernel
 	CUDA_SAFE_CALL(cudaGetLastError());

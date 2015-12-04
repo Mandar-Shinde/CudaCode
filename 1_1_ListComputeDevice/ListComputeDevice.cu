@@ -50,6 +50,38 @@ int main()
 		printf("Compute : %d.%d\n", pro.major, pro.minor);
 		printf("Clock   : %d MHz \n", (pro.clockRate / 1000));
 		printf("Memory  : %d MB \n", (pro.totalGlobalMem) / 1024 / 1024);
+
+		// As Per Wikipedia 
+		// Number of ALU lanes for integer and floating-point arithmetic operations	
+		int icuda=0;	
+		switch (pro.major)
+		{
+		case 1: 
+			printf("Arch    : Tesla \n"); 
+			icuda = pro.multiProcessorCount * 8;
+			break;
+		case 2:
+			printf("Arch    : Fermi \n");
+			if (pro.minor == 1)
+				icuda = pro.multiProcessorCount * 48;
+			else
+				icuda = pro.multiProcessorCount * 32;
+			break;
+		case 3:
+			printf("Arch   : Kepler \n"); 
+			icuda = pro.multiProcessorCount * 192;
+			break;
+		case 4:
+			printf("Arch   : Unknown \n");
+			icuda = pro.multiProcessorCount * 1;
+			break;
+		case 5:
+			printf("Arch   : Maxwell \n");
+			icuda = pro.multiProcessorCount * 128;
+			break;
+		}
+		printf("CUDA    : %d\n", icuda);
+
 		printf("-------------------------------------------------\n");
 		_getch();
 	}
