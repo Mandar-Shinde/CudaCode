@@ -61,7 +61,7 @@ int main(void)
 		h_B[i] = rand() / (float)RAND_MAX;
 	}
 
-	// Allocate the device input vector A
+	// Allocate momory
 	float *d_A = NULL;
 	float *d_B = NULL;
 	float *d_C = NULL;
@@ -69,20 +69,20 @@ int main(void)
 	CUDA_SAFE_CALL(cudaMalloc((void **)&d_B, size));
 	CUDA_SAFE_CALL(cudaMalloc((void **)&d_C, size));
 
-
 	// Copy the host input vectors A and B in host memory to the device input vectors in
 	// device memory
-	printf("Copy input data from the host memory to the CUDA device\n");
+	printf("Copy host data to device\n");
 	CUDA_SAFE_CALL(cudaMemcpy(d_A, h_A, size, cudaMemcpyHostToDevice));
 	CUDA_SAFE_CALL(cudaMemcpy(d_B, h_B, size, cudaMemcpyHostToDevice));
 
 	// Launch the Vector Add CUDA Kernel
 	int threadsPerBlock = 256;
 	int blocksPerGrid = (numElements + threadsPerBlock - 1) / threadsPerBlock;
-	printf("CUDA kernel launch with %d blocks of %d threads\n", blocksPerGrid, threadsPerBlock);
+	printf("\nBlocks per Grid :%d\nThreads pre Block :%d\n", blocksPerGrid, threadsPerBlock);
+	
 	vectorAdd << <blocksPerGrid, threadsPerBlock >> >(d_A, d_B, d_C, numElements);
+	
 	err = cudaGetLastError();
-
 	if (err != cudaSuccess)
 	{
 		fprintf(stderr, "Failed to launch vectorAdd kernel (error code %s)!\n", cudaGetErrorString(err));
@@ -99,21 +99,10 @@ int main(void)
 		exit(EXIT_FAILURE);
 	}
 
-	// Verify that the result vector is correct
-	for (int i = 0; i < numElements; ++i)
-	{
-		if (fabs(h_A[i] + h_B[i] - h_C[i]) > 1e-5)
-		{
-			fprintf(stderr, "Result verification failed at element %d!\n", i);
-			exit(EXIT_FAILURE);
-		}
-	}
-
-	// Free device
+	// Free device and host memory
 	cudaFree(d_A);
 	cudaFree(d_B);
 	cudaFree(d_C);
-	// Free host memory
 	free(h_A);
 	free(h_B);
 	free(h_C);
