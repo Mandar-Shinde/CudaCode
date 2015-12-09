@@ -16,6 +16,17 @@
 #include <stdio.h>
 
 
+__global__  void addMatrix(float *array1, float *array2, float *result, int WIDTH)
+{
+
+}
+
+void prepareMatrix()
+{
+
+}
+
+
 int main()
 {
     
