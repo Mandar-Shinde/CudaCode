@@ -31,7 +31,7 @@ void CUDA_SAFE_CALL(cudaError_t call)
 __global__  void GPUAdd(float *array1, float *array2, float *result, int WIDTH)
 {
 	int i = blockDim.x * blockIdx.x + threadIdx.x;
-	result[i] = array1[i] + array2[i];
+	result[threadIdx.x] = array1[threadIdx.x] + array2[threadIdx.x];
 }
 
 void CPUAdd(float *array1, float *array2, float *result, int WIDTH)
@@ -74,7 +74,7 @@ int main()
 	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
 	B = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
 	SUM = prepareSquareMatrix(msize, MATRIX_INITIALIZE);  // 4 X 4
-	cudaRET = (float *)malloc(msize*msize);
+	cudaRET = (float *)malloc(msize*msize*sizeof(float));
 
 	CPUAdd(A, B, SUM, msize*msize);
 
@@ -92,9 +92,6 @@ int main()
 	GPUAdd << <blocksPerGrid, threadsPerBlock >> >(cudaA, cudaB, cudaSUM, msize*msize);
 	CUDA_SAFE_CALL(cudaMemcpy(cudaRET, cudaSUM, msize*msize, cudaMemcpyDeviceToHost));
 	
-	for (int i = 0; i < msize*msize; i++)
-		printf(" %.2f - %.2f  \n", cudaRET[i], SUM[i]);
-
 	cudaFree(cudaA);
 	cudaFree(cudaB);
 	cudaFree(cudaSUM);
