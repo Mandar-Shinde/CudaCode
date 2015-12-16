@@ -13,4 +13,4 @@
  4. Adding 50000 Numbers (Nvidia Sample)
 
 ##### Matrix Operations
- 1. Adding Matrix
+ 1. Adding Matrix (1000000 elements)
