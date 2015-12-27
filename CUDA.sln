@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Matrix", "Matrix", "{1EA2AC
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2_1_Matrix_Addition", "2_1_Matrix_Addition\2_1_Matrix_Addition.vcxproj", "{15004CDC-4E68-455E-942D-B37226543553}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2_2_Matrix_Multiplication", "2_2_Matrix_Multiplication\2_2_Matrix_Multiplication.vcxproj", "{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -65,6 +67,12 @@ Global
 		{15004CDC-4E68-455E-942D-B37226543553}.Release|Win32.Build.0 = Release|Win32
 		{15004CDC-4E68-455E-942D-B37226543553}.Release|x64.ActiveCfg = Release|x64
 		{15004CDC-4E68-455E-942D-B37226543553}.Release|x64.Build.0 = Release|x64
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Debug|Win32.Build.0 = Debug|Win32
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Debug|x64.ActiveCfg = Debug|Win32
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Release|Win32.ActiveCfg = Release|Win32
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Release|Win32.Build.0 = Release|Win32
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,5 +83,6 @@ Global
 		{4123C8F2-B266-4C75-B437-26F972811574} = {B5EC3A85-2957-461F-A366-1D1BD8C21109}
 		{2EB3BDFF-D682-4B4E-BF8A-7CDAD4DC18DB} = {B5EC3A85-2957-461F-A366-1D1BD8C21109}
 		{15004CDC-4E68-455E-942D-B37226543553} = {1EA2AC15-B3DC-4ECB-8C58-BC4677F7692E}
+		{1583BE06-50DC-4E08-88D0-7EE0EE712B7F} = {1EA2AC15-B3DC-4ECB-8C58-BC4677F7692E}
 	EndGlobalSection
 EndGlobal
