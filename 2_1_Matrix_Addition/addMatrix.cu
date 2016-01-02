@@ -68,12 +68,12 @@ int main()
 	// Pointer for matrix
 	float *A, *B, *SUM;				// HOST
 	float *cudaA, *cudaB, *cudaSUM, *cudaRET;	// DEVICE
-	int msize = 1000;
+	int msize = 1000; //element size not width
 	
 	// Initializing matrix with data
-	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
-	B = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
-	SUM = prepareSquareMatrix(msize, MATRIX_INITIALIZE);  // 4 X 4
+	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  
+	B = prepareSquareMatrix(msize, MATRIX_RANDOM);  
+	SUM = prepareSquareMatrix(msize, MATRIX_INITIALIZE);  
 	cudaRET = (float *)malloc(msize*msize*sizeof(float));
 	memset(cudaRET, 0, msize*msize*sizeof(float));
 

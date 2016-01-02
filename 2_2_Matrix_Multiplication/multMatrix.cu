@@ -1,4 +1,7 @@
 
+
+// some refrence from http://www.umiacs.umd.edu/~ramani/cmsc828e_gpusci/Lecture5.pdf
+
 #include "cuda_runtime.h"
 #include "device_launch_parameters.h"
 
@@ -17,10 +20,26 @@ void CUDA_SAFE_CALL(cudaError_t call)
 	}
 }
 
-__global__  void GPUMult(float *array1, float *array2, float *result, int WIDTH)
-{
+__global__  void GPUMult(float *A, float *B, float *C, int WIDTH)
+{	
+	//current therad pos
 	int i = blockDim.x * blockIdx.x + threadIdx.x;
-	int j= blockDim.y * blockIdx.y + threadIdx.y;
+	float sol;
+	for (int cnt = 0; cnt < WIDTH;cnt++)
+	{
+		// 1D to 2D calc
+		int h = WIDTH* cnt+ threadIdx.x; 
+		//  |
+		//	|
+		//	V
+		//	| move in y (loop for X constant)
+		int w = WIDTH * threadIdx.y + cnt; //->-->--> move in x (loop for Y constant)
+	
+		sol += A[h]*B[w];
+	}
+	C[i] = sol;
+
+
 }
 
 void CPUMult(float *array1, float *array2, float *result, int WIDTH)
@@ -55,12 +74,12 @@ int main()
 	// Pointer for matrix
 	float *A, *B, *SOL;				// HOST
 	float *cudaA, *cudaB, *cudaSUM, *cudaRET;	// DEVICE
-	int msize = 1000;
+	int msize = 3; // 3 * 3 
 
 	// Initializing matrix with data
-	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
-	B = prepareSquareMatrix(msize, MATRIX_RANDOM);  // 4 X 4
-	SOL = prepareSquareMatrix(msize, MATRIX_INITIALIZE);  // 4 X 4
+	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  
+	B = prepareSquareMatrix(msize, MATRIX_RANDOM);  
+	SOL = prepareSquareMatrix(msize, MATRIX_INITIALIZE);  
 	cudaRET = (float *)malloc(msize*msize*sizeof(float));
 	memset(cudaRET, 0, msize*msize*sizeof(float));
 
@@ -80,6 +99,11 @@ int main()
 	GPUMult << <blocksPerGrid, threadsPerBlock >> >(cudaA, cudaB, cudaSUM, msize*msize);
 	CUDA_SAFE_CALL(cudaMemcpy(cudaRET, cudaSUM, msize*msize*sizeof(float), cudaMemcpyDeviceToHost));
 
+	for (int i = 0; i < 9; i++)
+	{
+		printf("[%d]  A[%f]  B[%f]  C[%f]\n", i, A[i], B[i], SOL[i]);
+	}
+	
 	cudaFree(cudaA);
 	cudaFree(cudaB);
 	cudaFree(cudaSUM);
