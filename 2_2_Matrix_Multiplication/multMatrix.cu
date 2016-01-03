@@ -22,9 +22,7 @@ void CUDA_SAFE_CALL(cudaError_t call)
 
 __global__  void GPUMult(float *A, float *B, float *C, int WIDTH)
 {	
-	//current therad pos
-	int i = blockDim.x * blockIdx.x + threadIdx.x;
-	float sol;
+	float sol=0;
 	for (int cnt = 0; cnt < WIDTH;cnt++)
 	{
 		// 1D to 2D calc
@@ -34,12 +32,10 @@ __global__  void GPUMult(float *A, float *B, float *C, int WIDTH)
 		//	V
 		//	| move in y (loop for X constant)
 		int w = WIDTH * threadIdx.y + cnt; //->-->--> move in x (loop for Y constant)
-	
+
 		sol += A[h]*B[w];
 	}
 	C[i] = sol;
-
-
 }
 
 void CPUMult(float *array1, float *array2, float *result, int WIDTH)
@@ -74,7 +70,7 @@ int main()
 	// Pointer for matrix
 	float *A, *B, *SOL;				// HOST
 	float *cudaA, *cudaB, *cudaSUM, *cudaRET;	// DEVICE
-	int msize = 3; // 3 * 3 
+	int msize = 3;  // 3X3
 
 	// Initializing matrix with data
 	A = prepareSquareMatrix(msize, MATRIX_RANDOM);  
@@ -89,21 +85,18 @@ int main()
 	CUDA_SAFE_CALL(cudaMalloc((void **)&cudaB, msize*msize*sizeof(float)));
 	CUDA_SAFE_CALL(cudaMalloc((void **)&cudaSUM, msize*msize*sizeof(float)));
 
-
-	int threadsPerBlock = 32;
+	// we are calculating 3X3 matrix so we will need only 9 threads
+	int threadsPerBlock = 9;
 	int blocksPerGrid = (msize*msize + threadsPerBlock - 1) / threadsPerBlock;
-	printf("\nBlocks per Grid :%d\nThreads pre Block :%d\n", blocksPerGrid, threadsPerBlock);
 
 	CUDA_SAFE_CALL(cudaMemcpy(cudaA, A, msize*msize*sizeof(float), cudaMemcpyHostToDevice));
 	CUDA_SAFE_CALL(cudaMemcpy(cudaB, B, msize*msize*sizeof(float), cudaMemcpyHostToDevice));
 	GPUMult << <blocksPerGrid, threadsPerBlock >> >(cudaA, cudaB, cudaSUM, msize*msize);
+	_sleep(10);
 	CUDA_SAFE_CALL(cudaMemcpy(cudaRET, cudaSUM, msize*msize*sizeof(float), cudaMemcpyDeviceToHost));
 
-	for (int i = 0; i < 9; i++)
-	{
-		printf("[%d]  A[%f]  B[%f]  C[%f]\n", i, A[i], B[i], SOL[i]);
-	}
-	
+
+	printf("\nBlocks per Grid :%d\nThreads pre Block :%d\n", blocksPerGrid, threadsPerBlock);
 	cudaFree(cudaA);
 	cudaFree(cudaB);
 	cudaFree(cudaSUM);
