@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_1_ListComputeDevice", "1_1_ListComputeDevice\1_1_ListComputeDevice.vcxproj", "{1F9BD428-B0C5-4468-830C-A9FB056D60D6}"
 EndProject
@@ -18,6 +18,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2_1_Matrix_Addition", "2_1_Matrix_Addition\2_1_Matrix_Addition.vcxproj", "{15004CDC-4E68-455E-942D-B37226543553}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "2_2_Matrix_Multiplication", "2_2_Matrix_Multiplication\2_2_Matrix_Multiplication.vcxproj", "{2609A1E4-99AC-4DED-A6F4-E73501B0180C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PreBasic", "PreBasic", "{1E47B76A-FAD4-456C-BAFC-85F690A91265}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "0_1_kernel_1D_5BLK_1THR", "0_1_kernel_1D_5BLK_1THR\0_1_kernel_1D_5BLK_1THR.vcxproj", "{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +79,14 @@ Global
 		{2609A1E4-99AC-4DED-A6F4-E73501B0180C}.Release|Win32.Build.0 = Release|Win32
 		{2609A1E4-99AC-4DED-A6F4-E73501B0180C}.Release|x64.ActiveCfg = Release|x64
 		{2609A1E4-99AC-4DED-A6F4-E73501B0180C}.Release|x64.Build.0 = Release|x64
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Debug|Win32.Build.0 = Debug|Win32
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Debug|x64.ActiveCfg = Debug|x64
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Debug|x64.Build.0 = Debug|x64
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Release|Win32.ActiveCfg = Release|Win32
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Release|Win32.Build.0 = Release|Win32
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Release|x64.ActiveCfg = Release|x64
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +98,6 @@ Global
 		{2EB3BDFF-D682-4B4E-BF8A-7CDAD4DC18DB} = {B5EC3A85-2957-461F-A366-1D1BD8C21109}
 		{15004CDC-4E68-455E-942D-B37226543553} = {1EA2AC15-B3DC-4ECB-8C58-BC4677F7692E}
 		{2609A1E4-99AC-4DED-A6F4-E73501B0180C} = {1EA2AC15-B3DC-4ECB-8C58-BC4677F7692E}
+		{71B375D3-AE0B-4E57-8E71-AFFD9E78A2C5} = {1E47B76A-FAD4-456C-BAFC-85F690A91265}
 	EndGlobalSection
 EndGlobal
